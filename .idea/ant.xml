@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AntConfiguration">
+    <buildFile url="file://$PROJECT_DIR$/assembly/build.xml" />
+    <buildFile url="file://$PROJECT_DIR$/core/build.xml" />
+    <buildFile url="file://$PROJECT_DIR$/dbdialog/build.xml" />
+    <buildFile url="file://$PROJECT_DIR$/engine/build.xml" />
+    <buildFile url="file://$PROJECT_DIR$/plugins/kettle-gpload-plugin/build.xml" />
+    <buildFile url="file://$PROJECT_DIR$/plugins/kettle-hl7-plugin/build.xml" />
+    <buildFile url="file://$PROJECT_DIR$/plugins/kettle-openerp-plugin/build.xml" />
+    <buildFile url="file://$PROJECT_DIR$/plugins/kettle-palo-plugin/build.xml" />
+    <buildFile url="file://$PROJECT_DIR$/plugins/kettle5-log4j-plugin/build.xml" />
+    <buildFile url="file://$PROJECT_DIR$/plugins/market/build.xml" />
+    <buildFile url="file://$PROJECT_DIR$/plugins/star-modeler/build.xml" />
+    <buildFile url="file://$PROJECT_DIR$/ui/build.xml" />
+  </component>
+</project>
+

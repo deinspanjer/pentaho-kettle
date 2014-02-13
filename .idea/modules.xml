@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/core/Kettle Core.iml" filepath="$PROJECT_DIR$/core/Kettle Core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dbdialog/Kettle DB Dialog.iml" filepath="$PROJECT_DIR$/dbdialog/Kettle DB Dialog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/engine/Kettle Engine.iml" filepath="$PROJECT_DIR$/engine/Kettle Engine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/kettle-gpload-plugin/Kettle GPLoad Plugin.iml" filepath="$PROJECT_DIR$/plugins/kettle-gpload-plugin/Kettle GPLoad Plugin.iml" group="Plugins" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/kettle-hl7-plugin/Kettle HL7 Plugin.iml" filepath="$PROJECT_DIR$/plugins/kettle-hl7-plugin/Kettle HL7 Plugin.iml" group="Plugins" />
+      <module fileurl="file://$PROJECT_DIR$/assembly/Kettle Launch Context.iml" filepath="$PROJECT_DIR$/assembly/Kettle Launch Context.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/market/Kettle Market Plugin.iml" filepath="$PROJECT_DIR$/plugins/market/Kettle Market Plugin.iml" group="Plugins" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/kettle-openerp-plugin/Kettle Open ERP Plugin.iml" filepath="$PROJECT_DIR$/plugins/kettle-openerp-plugin/Kettle Open ERP Plugin.iml" group="Plugins" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/kettle-palo-plugin/Kettle Palo Plugin.iml" filepath="$PROJECT_DIR$/plugins/kettle-palo-plugin/Kettle Palo Plugin.iml" group="Plugins" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/star-modeler/Kettle Star Modeler Plugin.iml" filepath="$PROJECT_DIR$/plugins/star-modeler/Kettle Star Modeler Plugin.iml" group="Plugins" />
+      <module fileurl="file://$PROJECT_DIR$/ui/Kettle UI.iml" filepath="$PROJECT_DIR$/ui/Kettle UI.iml" />
+    </modules>
+  </component>
+</project>
+

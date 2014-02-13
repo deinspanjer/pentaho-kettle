@@ -38,6 +38,19 @@
     <entry_points version="2.0" />
   </component>
   <component name="IdProvider" IDEtalkID="7D21794E4B9E7CE717F5920D85700CD6" />
+  <component name="IvyIDEA.ProjectSettings">
+    <option name="artifactTypeSettings">
+      <ArtifactTypeSettings>
+        <option name="classesTypes" value="jar, mar, sar, war, ear, ejb, bundle, test-jar" />
+        <option name="javadocTypes" value="javadoc, doc, docs, apidoc, apidocs, documentation, documents" />
+        <option name="sourcesTypes" value="source, src, sources, srcs" />
+      </ArtifactTypeSettings>
+    </option>
+    <option name="ivySettingsFile" value="$PROJECT_DIR$/ivysettings.xml" />
+    <option name="propertiesSettings">
+      <PropertiesSettings />
+    </option>
+  </component>
   <component name="Palette2">
     <group name="Swing">
       <item class="com.intellij.uiDesigner.HSpacer" tooltip-text="Horizontal Spacer" icon="/com/intellij/uiDesigner/icons/hspacer.png" removable="false" auto-create-binding="false" can-attach-label="false">
@@ -164,19 +177,34 @@
       <module fileurl="file://$PROJECT_DIR$/core/Kettle Core.iml" filepath="$PROJECT_DIR$/core/Kettle Core.iml" />
       <module fileurl="file://$PROJECT_DIR$/dbdialog/Kettle DB Dialog.iml" filepath="$PROJECT_DIR$/dbdialog/Kettle DB Dialog.iml" />
       <module fileurl="file://$PROJECT_DIR$/engine/Kettle Engine.iml" filepath="$PROJECT_DIR$/engine/Kettle Engine.iml" />
-      <module fileurl="file://$PROJECT_DIR$/plugins/kettle-gpload-plugin/Kettle GPLoad Plugin.iml" filepath="$PROJECT_DIR$/plugins/kettle-gpload-plugin/Kettle GPLoad Plugin.iml" />
-      <module fileurl="file://$PROJECT_DIR$/plugins/kettle-hl7-plugin/Kettle HL7 Plugin.iml" filepath="$PROJECT_DIR$/plugins/kettle-hl7-plugin/Kettle HL7 Plugin.iml" />
-      <module fileurl="file://$PROJECT_DIR$/jdbc/Kettle JDBC.iml" filepath="$PROJECT_DIR$/jdbc/Kettle JDBC.iml" />
-      <module fileurl="file://$PROJECT_DIR$/plugins/market/Kettle Market Plugin.iml" filepath="$PROJECT_DIR$/plugins/market/Kettle Market Plugin.iml" />
-      <module fileurl="file://$PROJECT_DIR$/plugins/kettle-openerp-plugin/Kettle Open ERP Plugin.iml" filepath="$PROJECT_DIR$/plugins/kettle-openerp-plugin/Kettle Open ERP Plugin.iml" />
-      <module fileurl="file://$PROJECT_DIR$/plugins/kettle-palo-plugin/Kettle Palo Plugin.iml" filepath="$PROJECT_DIR$/plugins/kettle-palo-plugin/Kettle Palo Plugin.iml" />
-      <module fileurl="file://$PROJECT_DIR$/plugins/star-modeler/Kettle Star Modeler Plugin.iml" filepath="$PROJECT_DIR$/plugins/star-modeler/Kettle Star Modeler Plugin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/kettle-gpload-plugin/Kettle GPLoad Plugin.iml" filepath="$PROJECT_DIR$/plugins/kettle-gpload-plugin/Kettle GPLoad Plugin.iml" group="Plugins" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/kettle-hl7-plugin/Kettle HL7 Plugin.iml" filepath="$PROJECT_DIR$/plugins/kettle-hl7-plugin/Kettle HL7 Plugin.iml" group="Plugins" />
+      <module fileurl="file://$PROJECT_DIR$/Kettle Launch Context/Kettle Launch Context.iml" filepath="$PROJECT_DIR$/Kettle Launch Context/Kettle Launch Context.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/market/Kettle Market Plugin.iml" filepath="$PROJECT_DIR$/plugins/market/Kettle Market Plugin.iml" group="Plugins" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/kettle-openerp-plugin/Kettle Open ERP Plugin.iml" filepath="$PROJECT_DIR$/plugins/kettle-openerp-plugin/Kettle Open ERP Plugin.iml" group="Plugins" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/kettle-palo-plugin/Kettle Palo Plugin.iml" filepath="$PROJECT_DIR$/plugins/kettle-palo-plugin/Kettle Palo Plugin.iml" group="Plugins" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/star-modeler/Kettle Star Modeler Plugin.iml" filepath="$PROJECT_DIR$/plugins/star-modeler/Kettle Star Modeler Plugin.iml" group="Plugins" />
       <module fileurl="file://$PROJECT_DIR$/ui/Kettle UI.iml" filepath="$PROJECT_DIR$/ui/Kettle UI.iml" />
-      <module fileurl="file://$PROJECT_DIR$/plugins/kettle5-log4j-plugin/PDI5 Log4j logging plugin.iml" filepath="$PROJECT_DIR$/plugins/kettle5-log4j-plugin/PDI5 Log4j logging plugin.iml" />
     </modules>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="ProjectRunConfigurationManager">
+    <configuration default="false" name="Spoon" type="Application" factoryName="Application" singleton="true">
+      <option name="MAIN_CLASS_NAME" value="org.pentaho.di.ui.spoon.Spoon" />
+      <option name="VM_PARAMETERS" value="-XstartOnFirstThread -DKETTLE_PLUGIN_CLASSES=org.pentaho.di.starmodeler.StarModelerSpoonPlugin,org.pentaho.di.core.market.Market" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/assembly/package-res" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Kettle Launch Context" />
+      <envs />
+      <method />
+    </configuration>
   </component>
   <component name="SvnBranchConfigurationManager">
     <option name="myConfigurationMap">
@@ -195,19 +223,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="svn" />
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
-  </component>
-  <component name="libraryTable">
-    <library name="Kettle Libs">
-      <CLASSES>
-        <root url="file://$PROJECT_DIR$/lib" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="file://$PROJECT_DIR$/lib" />
-      </SOURCES>
-      <jarDirectory url="file://$PROJECT_DIR$/lib" recursive="false" />
-      <jarDirectory url="file://$PROJECT_DIR$/lib" recursive="false" type="SOURCES" />
-    </library>
   </component>
 </project>
 

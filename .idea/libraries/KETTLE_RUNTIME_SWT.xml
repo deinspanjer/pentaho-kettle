@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="KETTLE_RUNTIME_SWT">
+    <CLASSES>
+      <root url="jar://$KETTLE_SWT_DIR$/swt.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$KETTLE_SWT_DIR$/src.zip!/" />
+    </SOURCES>
+  </library>
+</component>
