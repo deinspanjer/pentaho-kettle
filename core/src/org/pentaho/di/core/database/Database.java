@@ -111,8 +111,8 @@ import org.pentaho.di.repository.RepositoryDirectory;
  */
 public class Database implements VariableSpace, LoggingObjectInterface {
   /** for i18n purposes, needed by Translator2!! */
-  private static Class<?> PKG = Database.class; 
-  
+  private static Class<?> PKG = Database.class;
+
   private static final Map<String, Set<String>> registeredDrivers = new HashMap<String, Set<String>>();
 
   private DatabaseMeta databaseMeta;
@@ -464,7 +464,7 @@ public class Database implements VariableSpace, LoggingObjectInterface {
       initWithNamedDataSource( environmentSubstitute( databaseMeta.getDatabaseName() ) );
       return;
     }
-    
+
     // Install and load the jdbc Driver
     PluginInterface plugin =
         PluginRegistry.getInstance().getPlugin( DatabasePluginType.class, databaseMeta.getDatabaseInterface() );
@@ -2716,7 +2716,7 @@ public class Database implements VariableSpace, LoggingObjectInterface {
   }
 
   public Object[] getLookup() throws KettleDatabaseException {
-    return getLookup( prepStatementLookup );
+    return getLookup( prepStatementLookup, false );
   }
 
   public Object[] getLookup( boolean failOnMultipleResults ) throws KettleDatabaseException {
@@ -2724,6 +2724,9 @@ public class Database implements VariableSpace, LoggingObjectInterface {
   }
 
   public Object[] getLookup( PreparedStatement ps ) throws KettleDatabaseException {
+    // we assume this is external PreparedStatement and we may need to re-create rowMeta
+    // so we just reset it to null and it will be re-created on processRow call
+    rowMeta = null;
     return getLookup( ps, false );
   }
 
@@ -2732,8 +2735,6 @@ public class Database implements VariableSpace, LoggingObjectInterface {
     try {
       log.snap( Metrics.METRIC_DATABASE_GET_LOOKUP_START, databaseMeta.getName() );
       res = ps.executeQuery();
-
-      rowMeta = getRowInfo( res.getMetaData(), false, false );
 
       Object[] ret = getRow( res );
 
