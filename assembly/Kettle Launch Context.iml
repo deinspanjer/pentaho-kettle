@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="IvyIDEA" name="IvyIDEA">
+      <configuration ivyFile="$MODULE_DIR$/ivy.xml" useProjectSettings="true" useCustomIvySettings="true" ivySettingsFile="" onlyResolveSelectedConfigs="true">
+        <configsToResolve>
+          <config>swtlibs</config>
+        </configsToResolve>
+        <propertiesSettings>
+          <propertiesFiles includeProjectLevelPropertiesFiles="true">
+            <fileName>$MODULE_DIR$/build.properties</fileName>
+          </propertiesFiles>
+        </propertiesSettings>
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="RUNTIME" name="KETTLE_RUNTIME_SWT" level="project" />
+    <orderEntry type="module" module-name="Kettle Core" scope="RUNTIME" />
+    <orderEntry type="module" module-name="Kettle DB Dialog" scope="RUNTIME" />
+    <orderEntry type="module" module-name="Kettle Engine" scope="RUNTIME" />
+    <orderEntry type="module" module-name="Kettle GPLoad Plugin" scope="RUNTIME" />
+    <orderEntry type="module" module-name="Kettle HL7 Plugin" scope="RUNTIME" />
+    <orderEntry type="module" module-name="Kettle Market Plugin" scope="RUNTIME" />
+    <orderEntry type="module" module-name="Kettle Open ERP Plugin" scope="RUNTIME" />
+    <orderEntry type="module" module-name="Kettle Palo Plugin" scope="RUNTIME" />
+    <orderEntry type="module" module-name="Kettle Star Modeler Plugin" scope="RUNTIME" />
+    <orderEntry type="module" module-name="Kettle UI" scope="RUNTIME" />
+  </component>
+</module>
+
