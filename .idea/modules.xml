@@ -13,6 +13,7 @@
       <module fileurl="file://$PROJECT_DIR$/plugins/kettle-palo-plugin/Kettle Palo Plugin.iml" filepath="$PROJECT_DIR$/plugins/kettle-palo-plugin/Kettle Palo Plugin.iml" group="Plugins" />
       <module fileurl="file://$PROJECT_DIR$/plugins/star-modeler/Kettle Star Modeler Plugin.iml" filepath="$PROJECT_DIR$/plugins/star-modeler/Kettle Star Modeler Plugin.iml" group="Plugins" />
       <module fileurl="file://$PROJECT_DIR$/ui/Kettle UI.iml" filepath="$PROJECT_DIR$/ui/Kettle UI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/assembly/Launch (twitter4j).iml" filepath="$PROJECT_DIR$/assembly/Launch (twitter4j).iml" />
     </modules>
   </component>
 </project>
