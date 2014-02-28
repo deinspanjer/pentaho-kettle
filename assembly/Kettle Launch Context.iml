@@ -32,6 +32,7 @@
     <orderEntry type="module" module-name="Kettle Palo Plugin" scope="RUNTIME" />
     <orderEntry type="module" module-name="Kettle Star Modeler Plugin" scope="RUNTIME" />
     <orderEntry type="module" module-name="Kettle UI" scope="RUNTIME" />
+    <orderEntry type="module" module-name="VerticaBulkLoader" />
   </component>
 </module>
 
