@@ -665,7 +665,6 @@ public class Const {
    */
   public static final String KETTLE_EMPTY_STRING_DIFFERS_FROM_NULL = "KETTLE_EMPTY_STRING_DIFFERS_FROM_NULL";
 
-
   /**
    * System wide flag to allow non-strict string to number conversion for backward compatibility. If this setting is set
    * to "Y", an string starting with digits will be converted successfully into a number. (example: 192.168.1.1 will be
@@ -857,7 +856,7 @@ public class Const {
    * The XML file that contains the list of native Kettle database types (MySQL, Oracle, etc)
    */
   public static final String XML_FILE_KETTLE_DATABASE_TYPES = "kettle-database-types.xml";
-  
+
   /**
    * The XML file that contains the list of native Kettle compression providers (None, ZIP, GZip, etc.)
    */
@@ -1338,12 +1337,19 @@ public class Const {
     return getOS().toUpperCase().contains( "OS X" );
   }
 
+  private static String cachedHostname;
+
   /**
    * Determine the hostname of the machine Kettle is running on
    *
    * @return The hostname
    */
   public static final String getHostname() {
+
+    if ( cachedHostname != null ) {
+      return cachedHostname;
+    }
+
     String lastHostname = "localhost";
     try {
       Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces();
@@ -1359,20 +1365,22 @@ public class Const {
           // System.out.println("  Cann.hostname    : "+in.getCanonicalHostName());
           // System.out.println("  ip string        : "+in.toString());
           if ( !lastHostname.equalsIgnoreCase( "localhost" ) && !( lastHostname.indexOf( ':' ) >= 0 ) ) {
-            return lastHostname;
+            break;
           }
         }
       }
     } catch ( SocketException e ) {
-      return lastHostname;
+      // Eat exception, just return what you have
     }
+
+    cachedHostname = lastHostname;
 
     return lastHostname;
   }
 
   /**
    * Determine the hostname of the machine Kettle is running on
-   * 
+   *
    * @return The hostname
    */
   public static final String getHostnameReal() {
@@ -1410,7 +1418,7 @@ public class Const {
 
   /**
    * Determins the IP address of the machine Kettle is running on.
-   * 
+   *
    * @return The IP address
    */
   public static final String getIPAddress() throws Exception {

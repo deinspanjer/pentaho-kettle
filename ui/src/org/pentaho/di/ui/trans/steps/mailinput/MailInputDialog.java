@@ -1369,6 +1369,10 @@ public class MailInputDialog extends BaseStepDialog implements StepDialogInterfa
       wListmails.select( 0 ); // Retrieve All Mails
     }
 
+    if ( input.getFirstMails() != null ) {
+      wFirstmails.setText( input.getFirstMails() );
+    }
+
     wIMAPListmails.setText( MailConnectionMeta.getValueImapListDesc( input.getValueImapList() ) );
     if ( input.getFirstIMAPMails() != null ) {
       wIMAPFirstmails.setText( input.getFirstIMAPMails() );
@@ -1429,7 +1433,10 @@ public class MailInputDialog extends BaseStepDialog implements StepDialogInterfa
     wFields.optWidth( true );
 
     wUseBatch.setSelection( input.isUseBatch() );
-    wBatchSize.setText( input.getBatchSize() == null ? "" : input.getBatchSize().toString() );
+    wBatchSize.setText(
+      input.getBatchSize() == null
+        ? String.valueOf( MailInputMeta.DEFAULT_BATCH_SIZE )
+        : input.getBatchSize().toString() );
     wStartMessage.setText( input.getStart() == null ? "" : input.getStart().toString() );
     wEndMessage.setText( input.getEnd() == null ? "" : input.getEnd().toString() );
     wIgnoreFieldErrors.setSelection( input.isStopOnError() );
@@ -1513,7 +1520,8 @@ public class MailInputDialog extends BaseStepDialog implements StepDialogInterfa
     }
 
     in.setUseBatch( wUseBatch.getSelection() );
-    in.setBatchSize( getInteger( wBatchSize.getText() ) );
+    Integer batchSize = getInteger( wBatchSize.getText() );
+    in.setBatchSize( batchSize == null ? MailInputMeta.DEFAULT_BATCH_SIZE : batchSize );
     in.setStart( wStartMessage.getText() );
     in.setEnd( wEndMessage.getText() );
     in.setStopOnError( wIgnoreFieldErrors.getSelection() );

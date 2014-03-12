@@ -2155,7 +2155,8 @@ public class Spoon extends ApplicationWindow implements AddUndoPositionInterface
     coreObjectsTree.addMouseListener( new MouseAdapter() {
       @Override
       public void mouseDoubleClick( MouseEvent event ) {
-        doubleClickedInTree( coreObjectsTree );
+        boolean shift = ( event.stateMask & SWT.SHIFT ) != 0;
+        doubleClickedInTree( coreObjectsTree, shift );
       }
     } );
 
@@ -2960,6 +2961,14 @@ public class Spoon extends ApplicationWindow implements AddUndoPositionInterface
    *
    */
   private void doubleClickedInTree( Tree tree ) {
+    doubleClickedInTree( tree, false );
+  }
+
+  /**
+   * Reaction to double click
+   *
+   */
+  private void doubleClickedInTree( Tree tree, boolean shift ) {
     TreeSelection[] objects = getTreeObjects( tree );
     if ( objects.length != 1 ) {
       return; // not yet supported, we can do this later when the OSX bug
@@ -3005,13 +3014,13 @@ public class Spoon extends ApplicationWindow implements AddUndoPositionInterface
         if ( plugin.getPluginType().equals( StepPluginType.class ) ) {
           TransGraph transGraph = getActiveTransGraph();
           if ( transGraph != null ) {
-            transGraph.addStepToChain( plugin );
+            transGraph.addStepToChain( plugin, shift );
           }
         }
         if ( plugin.getPluginType().equals( JobEntryPluginType.class ) ) {
           JobGraph jobGraph = getActiveJobGraph();
           if ( jobGraph != null ) {
-            jobGraph.addJobEntryToChain( object.getItemText() );
+            jobGraph.addJobEntryToChain( object.getItemText(), shift );
           }
         }
         // newStep( getActiveTransformation() );
@@ -3181,7 +3190,7 @@ public class Spoon extends ApplicationWindow implements AddUndoPositionInterface
     try {
       SpoonPerspective activePerspective = SpoonPerspectiveManager.getInstance().getActivePerspective();
       Class<? extends SpoonPerspective> cls = activePerspective.getClass();
-      Method m = cls.getMethod( "onFileClose", new Class[0] );
+      Method m = cls.getMethod( "onFileClose", new Class<?>[0] );
       return (Boolean) m.invoke( activePerspective );
     } catch ( Exception e ) {
       // ignore any errors resulting from the hack
@@ -6426,15 +6435,11 @@ public class Spoon extends ApplicationWindow implements AddUndoPositionInterface
           }
           inf.setLocation( 20, 20 ); // default location at (20,20)
           transMeta.addStep( inf );
-
-          // Save for later:
-          // if openit is false: we drag&drop it onto the canvas!
-          if ( openit ) {
-            addUndoNew( transMeta, new StepMeta[] { inf }, new int[] { transMeta.indexOfStep( inf ) } );
-          }
+          addUndoNew( transMeta, new StepMeta[] { inf }, new int[] { transMeta.indexOfStep( inf ) } );
 
           // Also store it in the pluginHistory list...
           props.increasePluginHistory( stepPlugin.getIds()[0] );
+
           // stepHistoryChanged = true;
 
           refreshTree();

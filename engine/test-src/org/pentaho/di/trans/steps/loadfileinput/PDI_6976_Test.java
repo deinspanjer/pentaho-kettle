@@ -23,13 +23,18 @@
 package org.pentaho.di.trans.steps.loadfileinput;
 
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.when;
 
 import java.util.List;
 
 import javax.tools.FileObject;
 
 import junit.framework.TestCase;
+
 import org.junit.Test;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
@@ -62,7 +67,7 @@ public class PDI_6976_Test {
     List<CheckResultInterface> validationResults = mock( List.class );
 
     // Check we do not get validation errors
-    doAnswer( new Answer() {
+    doAnswer( new Answer<Object>() {
       @Override
       public Object answer( InvocationOnMock invocation ) throws Throwable {
         if ( ( (CheckResultInterface) invocation.getArguments()[0] ).getType() != CheckResultInterface.TYPE_RESULT_OK ) {
@@ -74,7 +79,7 @@ public class PDI_6976_Test {
     } ).when( validationResults ).add( any( CheckResultInterface.class ) );
 
     spy.check( validationResults, mock( TransMeta.class ), mock( StepMeta.class ), mock( RowMetaInterface.class ),
-        new String[] {}, new String[] { "File content", "File size" }, mock( RowMetaInterface.class ),
-        mock( VariableSpace.class ), mock( Repository.class ), mock( IMetaStore.class ) );
+      new String[] {}, new String[] { "File content", "File size" }, mock( RowMetaInterface.class ),
+      mock( VariableSpace.class ), mock( Repository.class ), mock( IMetaStore.class ) );
   }
 }

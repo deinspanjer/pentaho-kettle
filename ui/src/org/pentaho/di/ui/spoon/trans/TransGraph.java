@@ -95,9 +95,10 @@ import org.pentaho.di.core.Props;
 import org.pentaho.di.core.dnd.DragAndDropContainer;
 import org.pentaho.di.core.dnd.XMLTransfer;
 import org.pentaho.di.core.exception.KettleException;
-import org.pentaho.di.core.exception.KettlePluginException;
 import org.pentaho.di.core.exception.KettleStepException;
 import org.pentaho.di.core.exception.KettleValueException;
+import org.pentaho.di.core.extension.ExtensionPointHandler;
+import org.pentaho.di.core.extension.KettleExtensionPoint;
 import org.pentaho.di.core.gui.AreaOwner;
 import org.pentaho.di.core.gui.BasePainter;
 import org.pentaho.di.core.gui.GCInterface;
@@ -721,6 +722,13 @@ public class TransGraph extends AbstractGraph implements XulEventHandler, Redraw
     // Hide the tooltip!
     hideToolTips();
 
+    try {
+      ExtensionPointHandler.callExtensionPoint( LogChannel.GENERAL, KettleExtensionPoint.TransGraphMouseDoubleClick.id,
+        new TransGraphExtension( this, e, real ) );
+    } catch ( Exception ex ) {
+      LogChannel.GENERAL.logError( "Error calling TransGraphMouseDoubleClick extension point", ex );
+    }
+
     StepMeta stepMeta = transMeta.getStep( real.x, real.y, iconsize );
     if ( stepMeta != null ) {
       if ( e.button == 1 ) {
@@ -780,6 +788,13 @@ public class TransGraph extends AbstractGraph implements XulEventHandler, Redraw
     if ( e.button == 3 ) {
       setMenu( real.x, real.y );
       return;
+    }
+
+    try {
+      ExtensionPointHandler.callExtensionPoint( LogChannel.GENERAL, KettleExtensionPoint.TransGraphMouseDown.id,
+        new TransGraphExtension( this, e, real ) );
+    } catch ( Exception ex ) {
+      LogChannel.GENERAL.logError( "Error calling TransGraphMouseDown extension point", ex );
     }
 
     // A single left or middle click on one of the area owners...
@@ -4675,17 +4690,31 @@ public class TransGraph extends AbstractGraph implements XulEventHandler, Redraw
 
   private StepMeta lastChained = null;
 
-  public void addStepToChain( PluginInterface stepPlugin ) {
+  public void addStepToChain( PluginInterface stepPlugin, boolean shift ) {
     TransMeta transMeta = spoon.getActiveTransformation();
     if ( transMeta == null ) {
       return;
+    }
+
+    //Is the lastChained entry still valid?
+    //
+    if ( lastChained != null && transMeta.findStep( lastChained.getName() ) == null ) {
+      lastChained = null;
+    }
+
+    // If there is exactly one selected step, pick that one as last chained.
+    //
+    List<StepMeta> sel = transMeta.getSelectedSteps();
+    if ( sel.size() == 1 ) {
+      lastChained = sel.get( 0 );
     }
 
     // Where do we add this?
 
     Point p = null;
     if ( lastChained == null ) {
-      p = new Point( 0, 50 );
+      p = transMeta.getMaximum();
+      p.x -= 100;
     } else {
       p = new Point( lastChained.getLocation().x, lastChained.getLocation().y );
     }
@@ -4694,21 +4723,44 @@ public class TransGraph extends AbstractGraph implements XulEventHandler, Redraw
 
     // Which is the new step?
 
-    try {
-      StepMetaInterface stepMetaInterface = (StepMetaInterface) PluginRegistry.getInstance().loadClass( stepPlugin );
-      StepMeta newStep = new StepMeta( stepPlugin.getName(), stepMetaInterface );
-      newStep.setLocation( p.x, p.y );
-      newStep.setDraw( true );
-      transMeta.addStep( newStep );
-      transMeta.addTransHop( new TransHopMeta( lastChained, newStep ) );
+    StepMeta newStep = spoon.newStep( transMeta, stepPlugin.getName(), stepPlugin.getName(), false, true );
+    if ( newStep == null ) {
+      return;
+    }
+    newStep.setLocation( p.x, p.y );
+    newStep.setDraw( true );
 
-      lastChained = newStep;
-      spoon.refreshGraph();
-      spoon.refreshTree();
-
-    } catch ( KettlePluginException e ) {
-      LogChannel.GENERAL.logError( "Error chaining step...", e );
+    if ( lastChained != null ) {
+      TransHopMeta hop = new TransHopMeta( lastChained, newStep );
+      spoon.newHop( transMeta, hop );
     }
 
+    lastChained = newStep;
+    spoon.refreshGraph();
+    spoon.refreshTree();
+
+    if ( shift ) {
+      editStep( newStep );
+    }
+
+    transMeta.unselectAll();
+    newStep.setSelected( true );
+
+  }
+
+  public Spoon getSpoon() {
+    return spoon;
+  }
+
+  public void setSpoon( Spoon spoon ) {
+    this.spoon = spoon;
+  }
+
+  public TransMeta getTransMeta() {
+    return transMeta;
+  }
+
+  public Trans getTrans() {
+    return trans;
   }
 }
